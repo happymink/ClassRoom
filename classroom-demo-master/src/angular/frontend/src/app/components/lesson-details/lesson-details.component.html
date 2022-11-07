@@ -23,7 +23,7 @@
     </div>
 
     <form #addAttendersForm (ngSubmit)="addLessonAttenders(); addAttendersForm.reset()" [class.filtered]="sumbitAddAttenders">
-      <h4 id="new-attender-title">New attender</h4>
+      <h4 id="new-attender-title">새로운 하객 추가</h4>
       <mat-form-field>
         <input matInput placeholder="Email" [(ngModel)]="emailAttender" name="attenderEmail" type="text" autocomplete="off"
           required>

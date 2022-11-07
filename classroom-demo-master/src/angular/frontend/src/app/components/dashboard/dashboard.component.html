@@ -6,13 +6,13 @@
   <div class="div-inner-main" [style.xs]="{'width': '100%'}">
 
     <div *ngIf="!addingLesson" fxLayout="row" fxLayoutAlign="center center">
-      <div fxFlex="80%">MY EVENT</div>
+      <div fxFlex="80%">결혼식 목록</div>
       <mat-icon fxFlex="20%" fxLayoutAlign="end center" *ngIf="authenticationService.isTeacher()" (click)="addingLesson = true"
         [title]="'Add lesson'">add_circle_outline</mat-icon>
     </div>
 
     <div *ngIf="addingLesson">
-      <div>NEW EVENT</div>
+      <div>새로운 결혼식</div>
       <form #newLessonForm (ngSubmit)="newLesson(); newLessonForm.reset()" [class.filtered]="submitNewLesson">
         <mat-form-field>
           <input matInput placeholder="Title" [(ngModel)]="lessonTitle" name="lessonTitle" id="lessonTitle" type="text"

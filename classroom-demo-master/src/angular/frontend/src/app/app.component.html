@@ -1,0 +1,53 @@
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav>
+    <button mat-button (click)="router.navigate(['/lessons']); sidenav.close()" class="sidenav-button">Lessons</button>
+    <button mat-button (click)="router.navigate(['/profile']); sidenav.close()" class="sidenav-button">Profile</button>
+    <button mat-button (click)="sidenav.close(); authenticationService.directLogOut()" class="sidenav-button">Logout</button>
+  </mat-sidenav>
+
+  <header *ngIf="!isVideoSessionUrl()">
+    <mat-toolbar color="primary" class="mat-elevation-z6">
+      <button mat-button routerLink="/" id="navbar-logo">
+        Wedding Platform
+      </button>
+      <span class="fill-remaining-space"></span>
+      <div *ngIf="authenticationService.isLoggedIn()" fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <button mat-button routerLink="/lessons">Event</button>
+        <button mat-button routerLink="/profile">Profile</button>
+        <button mat-button (click)="authenticationService.directLogOut()">LOGOUT</button>
+      </div>
+      <button *ngIf="authenticationService.isLoggedIn()" mat-button fxHide="false" fxHide.gt-sm (click)="sidenav.open()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+  </header>
+
+  <main [@routerTransition]="o.isActivated && o.activatedRoute.routeConfig.path">
+    <router-outlet #o="outlet"></router-outlet>
+  </main>
+
+  <footer *ngIf="!isVideoSessionUrl()" class="page-footer back-primary color-secondary mat-elevation-z5">
+    <div class="container">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutAlign.xs="start">
+        <div fxFlex="50%" fxFlex.xs="100%">
+          <h2></h2>
+          <p class="grey-text text-lighten-4"></p>
+        </div>
+        <div fxFlex="50%" fxFlex.xs="100%">
+          <div fxLayout="row" fxLayoutAlign="end start" fxLayoutAlign.xs="start">
+            <div fxFlex="50%">
+              <h2></h2>
+              
+            </div>
+            <div fxFlex="50%">
+              <h2></h2>
+           
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</mat-sidenav-container>
